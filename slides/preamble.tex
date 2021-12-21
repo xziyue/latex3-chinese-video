@@ -10,7 +10,7 @@
 \usepackage{xparse}
 \usepackage{tikz}
 
-\tcbuselibrary{minted,listings}
+\tcbuselibrary{minted,listings,xparse}
 
 \usefonttheme{professionalfonts}
 \usefonttheme{serif}
@@ -50,8 +50,8 @@
 \usecolortheme{beaver}
 \setbeamertemplate{navigation symbols}{}
 
-\author[项子越]{项子越\\ {\scriptsize\ttfamily ziyue.alan.xiang@gmail.com}\\ 
-{\scriptsize\url{https://github.com/xziyue/latex3-chinese-video}}}
+\author[项子越]{项子越\\ {\scriptsize\ttfamily ziyue.alan.xiang@gmail.com}}
+\institute[]{\url{https://github.com/xziyue/latex3-chinese-video}}
 
 
 % use custom lexer in minted
@@ -98,7 +98,29 @@
     boxrule=1pt
 }
 
-\newtcblisting{texcode**}{
+%\newtcblisting{texcode**}{
+%    listing engine=minted,
+%    minted options={
+%        fontsize=\codefontsize,
+%        linenos,
+%        autogobble,
+%        breaklines,
+%        numbersep=2mm,
+%        obeytabs,
+%        tabsize=2
+%    },
+%    minted language=\pyltlexer,
+%    top=0pt,
+%    bottom=0pt,
+%    left=4mm,
+%    colback=white,
+%    boxrule=1pt,
+%    listing side text
+%}
+
+
+
+\DeclareTCBListing{texcode**}{!o}{
     listing engine=minted,
     minted options={
         fontsize=\codefontsize,
@@ -115,7 +137,10 @@
     left=4mm,
     colback=white,
     boxrule=1pt,
-    listing side text
+    listing side text,
+    IfValueTF={#1}{
+        righthand width=\dimexpr #1\linewidth \relax
+    }{}
 }
 
 
